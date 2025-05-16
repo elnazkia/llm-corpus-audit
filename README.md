@@ -1,4 +1,4 @@
-# LLM Stylistic Profiling & Bias Audit
+# LLM Stylistic Profiling & Bias Audit .
 
 A data-centric corpus linguistics project that demonstrates the application of corpus linguistic methods to evaluate and analyze Large Language Models (LLMs).
 

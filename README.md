@@ -1,4 +1,4 @@
-# LLM Stylistic Profiling & Bias Audit .
+# LLM Stylistic Profiling & Bias Audit
 
 A data-centric corpus linguistics project that demonstrates the application of corpus linguistic methods to evaluate and analyze Large Language Models (LLMs).
 
@@ -20,10 +20,32 @@ llm-corpus-audit/
 ├── scripts/          # Python scripts for data processing and analysis
 ├── notebooks/        # Jupyter notebooks for analysis and visualization
 ├── media/           # Images, videos, and other media files
-└── requirements.txt  # Python package dependencies
+├── environment.yml   # Conda environment specification
+└── requirements.txt  # Python package dependencies (alternative to conda)
 ```
 
 ## Setup Instructions
+
+### Option 1: Using Conda (Recommended)
+
+1. Clone the repository:
+```bash
+git clone https://github.com/elnazkia/llm-corpus-audit.git
+cd llm-corpus-audit
+```
+
+2. Create and activate the conda environment:
+```bash
+conda env create -f environment.yml
+conda activate llm-corpus-audit
+```
+
+3. Download required NLTK data:
+```python
+python -c "import nltk; nltk.download('punkt'); nltk.download('averaged_perceptron_tagger'); nltk.download('brown')"
+```
+
+### Option 2: Using venv (Alternative)
 
 1. Clone the repository:
 ```bash

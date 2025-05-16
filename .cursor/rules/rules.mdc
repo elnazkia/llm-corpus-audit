@@ -3,4 +3,5 @@ description:
 globs: 
 alwaysApply: true
 ---
-conda activate llm-corpus-audit
+
+conda activate llm-corpus-audit  

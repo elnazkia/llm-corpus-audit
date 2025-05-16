@@ -28,9 +28,9 @@ By completing the project you will illustrate expertise in:
 ---
 
 ## 4. Public Data & Resources
-| Purpose | Dataset / Tool | Link |
+| Purpose | Dataset / Tool | Link / Source |
 |---------|----------------|------|
-| Reference corpora for stylistic baselines | Brown Corpus (NLTK), COCA Sample, Reddit Comments Corpus | NLTK, Kaggle |
+| Reference corpora for stylistic baselines | Brown Corpus, COCA Sample (if used), Reddit Comments Corpus (if used) | NLTK (`nltk.download('brown')`), Kaggle (for COCA Sample, Reddit Corpus) |
 | Bias evaluation | StereoSet, HolisticBias, RealToxicityPrompts | Hugging Face Datasets |
 | Toxicity scoring | Perspective API (Jigsaw) | https://developers.perspectiveapi.com |
 | MDA feature extraction | Multidimensional Analysis Tagger (MAT) 1.3 (Java) OR Biber feature list via spaCy / custom scripts | https://ucrel-web.lancs.ac.uk/mat/ |
@@ -85,12 +85,13 @@ pip install openai tiktoken
 4. **Reference corpora:** Download Brown Corpus via NLTK; sample equal-size subsets matching registers. Clean & save.
 
 ### Phase 2 – Stylistic Profiling
-1. **Feature extraction scripts** (`scripts/features.py`):
-   • Lexical: type-token ratio (lexicalrichness), hapax legomena ratio, average word frequency.
-   • Syntactic: mean sentence length, parse tree depth (spaCy), POS tag distribution.
-   • Discourse: pronoun rate, connectives list, stance markers.
+1. **Feature extraction and analysis modules** (`src/utils/corpus_utils.py`, `src/analysis/llm_analysis.py`):
+   • Lexical: type-token ratio (lexicalrichness), hapax legomena ratio, average word frequency (via `corpus_utils.py`).
+   • Syntactic: mean sentence length, parse tree depth (spaCy), POS tag distribution (can be added to `corpus_utils.py`).
+   • Discourse: pronoun rate, connectives list, stance markers (can be added to `corpus_utils.py`).
+   • Comparative analysis of LLM outputs against reference corpus (via `llm_analysis.py`).
 2. Optionally run **MAT 1.3** on outputs & reference corpora; parse results.
-3. **Analysis notebook**: PCA / clustering to visualise how LLM outputs align with human registers.
+3. **Analysis and Visualization notebook** (`notebooks/corpus_analysis_demo.ipynb`): PCA / clustering to visualise how LLM outputs align with human registers. Use `src/visualization/visualization.py` for plotting.
 
 ### Phase 3 – Bias & Toxicity Evaluation
 1. Load StereoSet & HolisticBias datasets (Hugging Face). Use model to complete each context; compute score deltas.
@@ -132,9 +133,12 @@ pip install openai tiktoken
 
 ## 9. Final Deliverables Checklist
 - [ ] GitHub repo with MIT license & detailed README.
-- [ ] 4+ Jupyter notebooks (data, style analysis, bias audit, annotation).
-- [ ] `data/` folder (raw & processed, or scripts to download).
-- [ ] `scripts/` with modular functions (feature extraction, analysis).
+- [ ] Jupyter notebooks (e.g., `notebooks/corpus_analysis_demo.ipynb`, plus others for data processing, style analysis, bias audit, annotation).
+- [ ] `data/` folder (raw & processed, or scripts to download/generate).
+- [ ] `src/` folder with modular Python functions:
+    - [ ] `src/utils/corpus_utils.py` (corpus loading, feature extraction)
+    - [ ] `src/analysis/llm_analysis.py` (comparative LLM analysis)
+    - [ ] `src/visualization/visualization.py` (plotting functions)
 - [ ] `report.md` (≈2-3 k words) with key findings & next steps.
 - [ ] Short demo video / GIF (in `media/`).
 - [ ] (Optional) Fine-tuned model + model card.
